@@ -31,14 +31,21 @@ flatten2([Elem1,Elem2|List]) ->
     flatten2([Elem1 ++ Elem2] ++ List);
 flatten2([List]) -> List.
 
-square1(List) -> square1help(List,[]).
-
-square1help([], List) -> List;
-square1help([Elem|OldList], NewList) ->
-    square1help(OldList, NewList ++ [Elem*Elem]).
+square1([]) -> [];
+square1([Elem|List]) -> [Elem*Elem|square1(List)].
     
 square2(List) -> [X*X || X <- List].
 
-
-
 square3(List) -> lists:map(fun(A) -> A*A end,List).
+
+filter1(Predicate, List) ->
+    [X||X <- List, Predicate(X)].
+    
+happyReceiver() -> 
+    receive
+        X -> io:fwrite("Yeeees! Someone said ~p to me!!\n", [X])
+    end, 
+    if
+        X == "quit" -> ok;
+        true -> happyReceiver()
+    end.
