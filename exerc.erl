@@ -26,3 +26,7 @@ deleteHelp(Elem, [X|XS], List) ->
         X == Elem -> List ++ XS;
         true -> deleteHelp(Elem, XS, List ++ [X])
     end.
+    
+flatten2([Elem1,Elem2|List]) ->
+    flatten2([Elem1 ++ Elem2] ++ List);
+flatten2([List]) -> List.
