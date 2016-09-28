@@ -30,3 +30,15 @@ deleteHelp(Elem, [X|XS], List) ->
 flatten2([Elem1,Elem2|List]) ->
     flatten2([Elem1 ++ Elem2] ++ List);
 flatten2([List]) -> List.
+
+square1(List) -> square1help(List,[]).
+
+square1help([], List) -> List;
+square1help([Elem|OldList], NewList) ->
+    square1help(OldList, NewList ++ [Elem*Elem]).
+    
+square2(List) -> [X*X || X <- List].
+
+
+
+square3(List) -> lists:map(fun(A) -> A*A end,List).
